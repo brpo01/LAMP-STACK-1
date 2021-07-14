@@ -13,6 +13,13 @@ This Project covers the implementation of developing a boilerplate LAMP Stack ap
 Let's get started with implementing the LAMP Stack and deploying to AWS.
 
 ## **Create an EC2 instance  on your AWS Dashboard**
+You have to create a Linux virtual server on AWS. There are several features and services that AWS offer but for this project, I'll be using the ec2 instance. If you're using windows, you have to download a CLI (Command Line Interface) such as Git, Putty, Termius, MobaXterm that is Linux-enabled so you can run basic linux commands. I watched this [video](https://www.youtube.com/watch?v=xxKuB9kJoYM&list=PLtPuNR8I4TvkwU7Zu0l0G_uwtSUXLckvh&index=7) to create a Linux virtual server, also i need to add that the Linux distro we're using is Ubuntu.
 
+When we're done creating the server, we first have to add permissions to our private key using this command
 
+![1](https://user-images.githubusercontent.com/47898882/125612456-909a6286-6a8b-4492-b0c9-d8e804fa153b.JPG)
+
+If that works out successfully, you can then connect to the server using the ssh command.
+
+![2](https://user-images.githubusercontent.com/47898882/125612466-cfe1af2c-41a1-4ccf-aac0-6e2a88404b62.JPG)
 
