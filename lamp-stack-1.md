@@ -88,6 +88,98 @@ If that installs correctly you can check the php version you installed using `ph
 
 At this junction, we have installed all the tools in LAMP Stack and they're all fully functional.
 
+## **Create A Virtual Host in Apache**
+In order to test our setup with a php script, we have to create a virtual host.
+
+Create a folder in your in the /var/www/html directory using `mkdir`. This directory is the default that has been configured for serving our files.
+
+```
+$ sudo mkdir lampserver
+```
+
+Assign ownership to the user using `chown` command.
+```
+$ sudo chown $user:$user lampserver
+```
+
+When that is done we have to create our own configuration script in the apache configuration folder
+```
+$ sudo vi /etc/apache2/site-avialable/lampserver.conf
+```
+
+*vi* also known as vim is a text editor in linux for writing code. The configuration for the virtual host will be written as below. You can use *i* to insert, :*wq* to write into the file and quit.
+
+```
+<VirtualHost *:80>
+    ServerName lampserver
+    ServerAlias www.lampserver 
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html/lampserver
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+When you have saved your configuration file use `sudo a2ensite lampserver.conf` to enble to virtual host you just created. Don't forget to also disable the default configuration using `sudo dissite 000-default`
+
+**Note** - If your configuration in lampserver.conf is not accurate, it'll throw an error when you're testing it on your browser. Make sure the DocumentRoot is correct most especially and is linking to the `/var/www/html/lampserver` folder we created. You can also test the accuracy of your configuration using `sudo apachectl configtest`
+
+![6](https://user-images.githubusercontent.com/47898882/125623621-3e492731-aa1c-444f-9b85-d228fe26c3bd.JPG)
+
+If your config works perfectly go back into your `/var/www/html/lampserver` folder and create a file called index.html using the *touch* command.
+
+```
+$ cd /var/www/html/lampserver
+$ touch index.html 
+```
+Then type out the following code below:
+
+```
+$ sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html
+```
+What this piece of code will do is redirect the output of that command into the index.html. You can confirm using `cat index.html` to check the file. You can now test this on your browser using:
+
+`
+http://<Public-IP-Address>:80 or
+http://DNS-name:80
+`.
+You should see something like this on your browser:
+
+![7](https://user-images.githubusercontent.com/47898882/125625721-eacb7530-2e9c-41ed-8827-7ab264a54e0a.JPG)
+
+We can also test our virtual host by writing a simple php script. In that same /var/www/html/lampserver directory, create another file called index.php and use *vi* to enter into the file. When that is done, the following script should be typed below:
+
+```
+<?php
+phpinfo();
+```
+Before we can test, we have to change the order of preference of our files. Remember we displayed the index.html file on the the browser, but before we can display any other file format, we have to change the preference as follows:
+
+```
+$ sudo vi /etc/apache2/mods-enabled/dir.conf
+```
+When that is done you can change the preference.
+
+![8](https://user-images.githubusercontent.com/47898882/125627452-87bfb1cd-b1dd-47a0-b220-474fed56342b.JPG)
+
+After all of this is done, we can test in our browser using 
+`
+http://<Public-IP-Address>:80 or
+http://DNS-name:80
+`.
+
+You should see an output like this:
+![9](https://user-images.githubusercontent.com/47898882/125628082-c3a68cae-5086-4da6-ba60-69d315bedfd0.JPG)
+
+So we have successfully built a LAMP stack application and deployed to our AWS ec2 instance.
+
+**This is complete Web Stack Implemenatation for the LAMP Stack**
+
+
+
+
+
+ 
+
 
 
 
