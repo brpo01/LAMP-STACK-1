@@ -1,6 +1,6 @@
 # **WEB STACK IMPLEMENTATION (LAMP STACK) IN AWS**
 
-This Project covers the implementation of developing a boilerplate LAMP Stack app from start to finish and deploying to **AWS** (Amazon Web Services). The LAMP Stack is a Technology Stack. A Technology stack comprises of framework/tools that are used in building a software application. The LAMP Acronym stands for Linux, Apache, MySQL, PHP.
+This Project covers the implementation of developing a LAMP Stack app from start to finish and deploying to **AWS** (Amazon Web Services). The LAMP Stack is a Technology Stack. A Technology stack comprises of framework/tools that are used in building a software application. The LAMP Acronym stands for Linux, Apache, MySQL, PHP.
 
 - Linux - It is an operating system that is free and open source, and was built from UNIX. We would be creating our AWS EC2 instance on a virtual Server.
 
